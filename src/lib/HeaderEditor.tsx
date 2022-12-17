@@ -58,6 +58,12 @@ export default function HeaderEditor({
               style={{ borderRight: "thin solid rgb(229, 231, 235)" }}
             >
               <input
+                onBlur={() => {
+                  if (syncRequired) {
+                    syncWithParent(headerArrayToObject(headerArray));
+                    setData({ headerArray: headerArray, syncRequired: false });
+                  }
+                }}
                 onChange={(e) => {
                   let edited = edited2DArray(headerArray, i, 1, e.target.value);
                   edited = edited2DArray(
@@ -69,8 +75,7 @@ export default function HeaderEditor({
                   if (i === headerArray.length - 1)
                     // add blank row below
                     edited.push([true, "", "", false]);
-                  syncWithParent(headerArrayToObject(headerArray));
-                  setData({ headerArray: edited, syncRequired: false });
+                  setData({ headerArray: edited, syncRequired: true });
                 }}
                 className="hasura-graphiql-table-input"
                 placeholder="Enter Key"
@@ -81,13 +86,18 @@ export default function HeaderEditor({
             </td>
             <td colSpan={1} className="hasura-graphiql-table-cell">
               <input
+                onBlur={() => {
+                  if (syncRequired) {
+                    syncWithParent(headerArrayToObject(headerArray));
+                    setData({ headerArray: headerArray, syncRequired: false });
+                  }
+                }}
                 onChange={(e) => {
                   let edited = edited2DArray(headerArray, i, 2, e.target.value);
                   if (i === headerArray.length - 1)
                     // add blank row
                     edited.push([true, "", "", false]);
-                  syncWithParent(headerArrayToObject(headerArray));
-                  setData({ headerArray: edited, syncRequired: false });
+                  setData({ headerArray: edited, syncRequired: true });
                 }}
                 className="hasura-graphiql-table-input"
                 placeholder="Enter Value"
