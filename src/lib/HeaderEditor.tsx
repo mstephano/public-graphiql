@@ -24,7 +24,7 @@ export default function HeaderEditor({
   });
 
   const syncWithParent = React.useCallback(
-    debounce((headers: Record<string, string>) => onUpdate(headers), 100),
+    (headers: Record<string, string>) => onUpdate(headers),
     []
   );
 
