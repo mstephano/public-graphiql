@@ -31,8 +31,9 @@
     ]
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=4001 react-scripts start",
     "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --extensions '.ts,.tsx,.js'",
+    "build2": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
